@@ -1,0 +1,87 @@
+.pg {
+    margin: 20px;
+}
+
+.clearfix:after {
+    display: table;
+    content: '';
+    clear: both;
+}
+
+span {
+    display: inline-block;
+}
+
+
+.spreaker-modal {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+
+}
+
+.spreaker-modal__window {
+    z-index: 9999;
+    overflow: auto;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 2px 2px 5px 2px #eee;
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    max-width: calc(100% - 2rem);
+    max-height: calc(100% - 2rem);
+
+}
+
+.spreaker-modal__window--study {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.speed-study-item {
+    font-size: 40px;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.answer-list {
+    list-style: none;
+    margin: 1rem 0;
+    padding: 0;
+}
+
+.answer-list button:focus {
+    background: none;
+    outline: none;
+}
+
+.answer-list__item {
+}
+
+/**/
+
+.passage-list {
+    list-style: none;
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.passage-list__item {
+margin: 1rem 0;
+}

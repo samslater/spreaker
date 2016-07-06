@@ -1,0 +1,159 @@
+<!doctype html>
+<html ng-app="app" lang="en">
+
+<head>
+
+    <title>Spreaker</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+
+    <style>
+        /*
+        Allow angular.js to be loaded in body, hiding cloaked elements until
+        templates compile. The
+
+        !important
+        is important given that there may be
+        other selectors that are more specific or come later and might alter display.
+        */
+
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div ng-controller="MainController" class="pg" ng-cloak>
+
+    <div class="clearfix">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3	col-lg-3">
+
+                <h3>Add/Edit Passage</h3>
+
+                <form name="passageForm">
+
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input name="title" ng-model="formTitle" class="form-control" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Text</label>
+                        <textarea name="content" ng-model="formContent" class="form-control"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" ng-click="passageFormSave()">Save</button>
+
+                </form>
+
+                <h3>Passages</h3>
+
+                <ul class="passage-list">
+                    <li class="passage-list__item" ng-repeat="passage in passages track by $index">
+                        <a ng-click="passageSelect(passage)" href="">{{passage.title}}</a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6	col-lg-6">
+
+                <div ng-show="currentPassage">
+
+                    <h2>{{currentPassage.title}}</h2>
+
+                    <h3>Progress</h3>
+
+                    <p>
+                        <input type="range"
+                               min="0"
+                               ng-attr-max="{{currentPassage.blocks.length}}"
+                               ng-model="currentBlock"
+                               ng-change="currentBlockChange()">
+                    </p>
+
+                    <p>
+                        <span ng-repeat="block in currentPassage.blocks track by $index">
+                            <span ng-repeat="answer in block.answers track by $index">{{answer}}&nbsp;</span>
+                        </span>
+                    </p>
+
+                    <!--<h3>Shorthand Entry</h3>-->
+
+                    <h3>Current Block
+                    </h3>
+
+                    <p>
+                        <textarea ng-model="firstLetterString" ng-change="firstLetterTyped(firstLetterString)" class="form-control"></textarea>
+                    </p>
+
+                    <!--<h3>Next Word Options</h3>-->
+
+                    <ul class="answer-list">
+                        <li class="answer-list__item" ng-repeat="option in currentOptions track by $index">
+                            <button class="btn btn-default btn-block btn-lg" value="option" ng-click="answerButtonClick(option)">{{option}}</button>
+                        </li>
+                    </ul>
+
+
+
+
+                </div>
+
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3	col-lg-3">
+
+                <div class="form-group">
+                    <label>Strikes</label>
+                    <input ng-model="strikes" class="form-control">
+                </div>
+
+                <div>
+
+                    <p><button ng-click="studyCurrentBlock()" class="btn btn-primary">Study current block</button></p>
+
+                    <!--<button ng-click="setTextArray()" class="btn btn-primary btn-block">Test</button>-->
+
+                    <!--<button ng-click="reset()" class="btn btn-primary btn-block">Reset</button>-->
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!---->
+    <div class="spreaker-modal" ng-show="speedStudyShow">
+
+        <div class="spreaker-modal__window spreaker-modal__window--study">
+            <div class="speed-study-item">{{speedStudyItem}}</div>
+            <p>
+                {{speedStudyFullText}}
+            </p>
+        </div>
+
+    </div>
+
+    <div class="spreaker-modal" ng-show="correctAnswerShow">
+        <div class="spreaker-modal__window">
+            <div class="speed-study-item">{{correctAnswer}}</div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="controllers/mainController.js"></script>
+<script src="services/utilityService.js"></script>
+<script src="services/dataService.js"></script>
+
+
+</body>
+
+</html>
