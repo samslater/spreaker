@@ -13,6 +13,8 @@ angular.module('app').controller('MainController', ['$scope', 'UtilityService', 
 
     $scope.correctAnswerShow = false;
     $scope.speedStudyShow = false;
+    $scope.showWordOptions = true;
+    $scope.cheatCurrentBlock = true;
 
     $scope.passages = DataService.passages;
 

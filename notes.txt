@@ -1,1 +1,1 @@
-http-server p 8085
+http-server /Users/slater1/Github/spreaker -p 8085

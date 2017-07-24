@@ -83,24 +83,37 @@
                         </span>
                     </p>
 
-                    <!--<h3>Shorthand Entry</h3>-->
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="cheatCurrentBlock" type="checkbox">
+                            <span>Cheat current block</span>
+                        </label>
+                    </div>
 
-                    <h3>Current Block
-                    </h3>
+                    <p ng-if="cheatCurrentBlock">
+                        <span ng-repeat="word in currentPassage.blocks[currentBlock].arr track by $index">{{word}}&nbsp;</span>
+                    </p>
+
+                    <h3>Current Block</h3>
 
                     <p>
                         <textarea ng-model="firstLetterString" ng-change="firstLetterTyped(firstLetterString)" class="form-control"></textarea>
                     </p>
 
-                    <!--<h3>Next Word Options</h3>-->
 
-                    <ul class="answer-list">
+
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="showWordOptions" type="checkbox">
+                            <span>Show word options</span>
+                        </label>
+                    </div>
+
+                    <ul class="answer-list" ng-if="showWordOptions">
                         <li class="answer-list__item" ng-repeat="option in currentOptions track by $index">
                             <button class="btn btn-default btn-block btn-lg" value="option" ng-click="answerButtonClick(option)">{{option}}</button>
                         </li>
                     </ul>
-
-
 
 
                 </div>
@@ -115,7 +128,9 @@
 
                 <div>
 
-                    <p><button ng-click="studyCurrentBlock()" class="btn btn-primary">Study current block</button></p>
+                    <p>
+                        <button ng-click="studyCurrentBlock()" class="btn btn-primary">Study current block</button>
+                    </p>
 
                     <!--<button ng-click="setTextArray()" class="btn btn-primary btn-block">Test</button>-->
 
